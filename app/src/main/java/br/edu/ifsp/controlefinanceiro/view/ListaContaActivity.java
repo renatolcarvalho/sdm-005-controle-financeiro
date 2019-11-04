@@ -20,9 +20,8 @@ import br.edu.ifsp.controlefinanceiro.dao.ContaDAO;
 import br.edu.ifsp.controlefinanceiro.dao.TransacaoDAO;
 import br.edu.ifsp.controlefinanceiro.model.Conta;
 import br.edu.ifsp.controlefinanceiro.util.Constantes;
-import br.edu.ifsp.controlefinanceiro.util.Utils;
 
-public class ListaContaActivity extends AppCompatActivity implements  AdapterView.OnItemClickListener{
+public class ListaContaActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private final int NOVA_CONTA_REQUEST_CODE = 0;
 
@@ -54,7 +53,7 @@ public class ListaContaActivity extends AppCompatActivity implements  AdapterVie
 
         saldoContasView = findViewById(R.id.totalSaldoContasView);
 
-        saldoContasView.setText("R$".concat(Utils.formatDecimal(contaDAO.buscarSaldo())));
+        saldoContasView.setText("R$ ".concat(String.valueOf(contaDAO.buscarSaldo())));
         contaAdapter = new ContaAdapter(this, listaConta);
 
         //Buscar total de entrada e saída
@@ -67,14 +66,15 @@ public class ListaContaActivity extends AppCompatActivity implements  AdapterVie
     }
 
     @Override
-    protected void onRestart() { super.onRestart();
+    protected void onRestart() {
+        super.onRestart();
         listaConta = contaDAO.buscarContas();
-        saldoContasView.setText("R$ ".concat(Utils.formatDecimal(contaDAO.buscarSaldo())));
+        saldoContasView.setText("R$ ".concat(String.valueOf(contaDAO.buscarSaldo())));
         contaAdapter = new ContaAdapter(this, listaConta);
         listaContaView.setAdapter(contaAdapter);
 
-        entradaTextView.setText(String.valueOf(transacaoDAO.buscarValorTransacoesCredito()));
-        saidaTextView.setText(String.valueOf(transacaoDAO.buscarValorTransacoesDebito()));
+        entradaTextView.setText("R$ ".concat(String.valueOf(transacaoDAO.buscarValorTransacoesCredito())));
+        saidaTextView.setText("R$ ".concat(String.valueOf(transacaoDAO.buscarValorTransacoesDebito())));
     }
 
     @Override
@@ -89,7 +89,7 @@ public class ListaContaActivity extends AppCompatActivity implements  AdapterVie
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
 
-        if(item.getItemId() == R.id.novaContaMenuItem){
+        if (item.getItemId() == R.id.novaContaMenuItem) {
             intent = new Intent(getApplicationContext(), ContaActivity.class);
             startActivityForResult(intent, NOVA_CONTA_REQUEST_CODE);
         }
@@ -99,9 +99,9 @@ public class ListaContaActivity extends AppCompatActivity implements  AdapterVie
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode){
+        switch (requestCode) {
             case NOVA_CONTA_REQUEST_CODE:
-                if(resultCode == RESULT_OK) {
+                if (resultCode == RESULT_OK) {
 
                     this.listaConta.removeAll(listaConta);
                     this.listaConta.addAll(contaDAO.buscarContas());
@@ -110,14 +110,14 @@ public class ListaContaActivity extends AppCompatActivity implements  AdapterVie
                     Toast.makeText(this, R.string.msg_sucesso, Toast.LENGTH_LONG).show();
                 }
 
-                if(resultCode == RESULT_CANCELED){
+                if (resultCode == RESULT_CANCELED) {
                     Toast.makeText(this, R.string.msg_cancelamento, Toast.LENGTH_LONG).show();
                 }
 
-                if(resultCode == Constantes.RESULT_ERROR){
+                if (resultCode == Constantes.RESULT_ERROR) {
                     Toast.makeText(this, R.string.msg_erro, Toast.LENGTH_LONG).show();
                 }
-            break;
+                break;
         }
     }
 

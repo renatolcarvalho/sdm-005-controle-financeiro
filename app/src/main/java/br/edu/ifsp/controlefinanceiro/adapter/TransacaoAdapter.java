@@ -20,9 +20,7 @@ public class TransacaoAdapter extends ArrayAdapter<TransacaoVO> {
 
     private TextView descricaoTransacaoTextView;
     private TextView valorTransacaoTextView;
-    private TextView naturezaOperacaoTransacaoTextView;
     private TextView centroCustoTransacaoTextView;
-    private ImageView thumbImageView;
     private LayoutInflater layoutInflater;
 
     public TransacaoAdapter(@NonNull Context context, List<TransacaoVO> transacaoList) {
@@ -40,14 +38,11 @@ public class TransacaoAdapter extends ArrayAdapter<TransacaoVO> {
 
         this.descricaoTransacaoTextView =  convertView.findViewById(R.id.descricao_transacao_view);
         this.valorTransacaoTextView =  convertView.findViewById(R.id.valor_transacao_view);
-        this.naturezaOperacaoTransacaoTextView =  convertView.findViewById(R.id.natureza_transacao_view);
         this.centroCustoTransacaoTextView =  convertView.findViewById(R.id.centro_custo_transacao_view);
-        this.thumbImageView = convertView.findViewById(R.id.thumb_image_view);
 
         TransacaoVO transacao = getItem(position);
         descricaoTransacaoTextView.setText(transacao.getDescricao());
         valorTransacaoTextView.setText(setarSimbolo(transacao));
-        naturezaOperacaoTransacaoTextView.setText(transacao.getNaturezaOperacao());
         centroCustoTransacaoTextView.setText("(".concat(transacao.getCentroCusto()).concat(")"));
 
         return convertView;

@@ -4,8 +4,9 @@
 
 
     <item android:id="@+id/novaContaMenuItem"
-        android:title="Conta"
-        app:showAsAction="collapseActionView">
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="Adicionar Conta"
+        app:showAsAction="always">
     </item>
 
 </menu>
