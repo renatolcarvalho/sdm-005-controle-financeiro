@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Controle Financeiro</string>
+
+    <string name="msg_sucesso">Dados salvos com sucesso</string>
+    <string name="msg_erro">Ocorreu um erro</string>
+    <string name="msg_cancelamento">Transação cancelada</string>
+    <string name="campos_obrigatorios">Existem campos de preenchimento obrigatório</string>
+    <string name="descricao">Descrição:</string>
+    <string name="moeda">R$</string>
+    <string name="operacao">Operação:</string>
+    <string name="debito">Débito</string>
+    <string name="credito">Crédito</string>
+    <string name="salvar">Salvar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="centro_custo">Centro de custo (Alimentação, combustível, escola etc...)</string>
+</resources>
